@@ -15,18 +15,18 @@ MongoClient.connect( 'mongodb://localhost:27017', ( err, client ) => {
   // findone and update
   db
     .collection( 'Todos' )
-    .findOneAndUpdate( {
-      completed: false
-    }, {
-      set: {
-        completed: true
-      }
-    }, { returnOriginal: false } )
-    .then( ( result ) => {
-      console.log( result );
-    }, ( err ) => {
-      console.log( err );
-    } );
+    .findOneAndUpdate({
+    completed: false
+  }, {
+    set: {
+      completed: true
+    }
+  }, { returnOriginal: false })
+  .then((result) => {
+    console.log(result);
+  }, (err) => {
+    console.log(err);
+  });
 
   // client.close();
 } );
