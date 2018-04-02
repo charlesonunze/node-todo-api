@@ -8,11 +8,9 @@ const salt = 'hash-salt';
 
 const token = jwt.sign(data, salt);
 
-console.log(`
-  ${token}
-  ${typeof token}
-`);
-
 const decodedToken = jwt.verify(token, salt);
 
-console.log(decodedToken);
+console.log(`
+  Token: ${token}
+  DecodedToken: ${JSON.stringify(decodedToken)}
+`);

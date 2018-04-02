@@ -70,6 +70,20 @@ UserSchema.methods.generateAuthToken = function() {
     });
 }
 
+UserSchema.statics.findByToken = function(token) {
+  const User = this;
+  const salt = 'hash-salt';
+  let decodedToken;
+
+  try {
+    decodedToken = jwt.verify(token, salt);
+  } catch (e) {
+    return Promise.reject();
+  }
+
+  return User.findOne({'_id': decodedToken._id, 'tokens.token': token, 'tokens.access': 'auth'});
+}
+
 const User = mongoose.model('User', UserSchema);
 
 module.exports = {
